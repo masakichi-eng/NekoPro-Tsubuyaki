@@ -1,24 +1,4 @@
-# README
+# 共同開発手順
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 環境構築
+- 環境構築を楽に行うため、Docker、Docker Composeを使用します。
