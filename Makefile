@@ -5,8 +5,6 @@ console:
 	docker-compose run --rm web bundle exec rails console
 
 up:
-	rm -rf tmp/pids/*
-	touch tmp/caching-dev.txt
 	docker-compose up
 
 stop:
