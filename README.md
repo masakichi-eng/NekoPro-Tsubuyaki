@@ -29,7 +29,7 @@
 
 今後、rails コマンドを使う時には以下のコマンドでコンテナの中に入ってから実行してください。
 
-### web packer のインストール
+### 各種install
 
 `$ docker-compose run --rm web bundle install`
 `$ docker-compose run --rm web yarn install`
