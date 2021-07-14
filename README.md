@@ -31,7 +31,7 @@
 
 ### 各種install
 
-`$ docker-compose run --rm web bundle install`
+`$ docker-compose run --rm web bundle install`  
 `$ docker-compose run --rm web yarn install`
 
 gemファイルを更新するときは
