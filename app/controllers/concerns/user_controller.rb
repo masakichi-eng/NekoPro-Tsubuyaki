@@ -1,4 +1,4 @@
-class UserController <  ApplicationControlle
+class UserController < ApplicationControlle
   # 基本的に投稿関係（index意外）はこちらのコントローラを継承してください
   # class Users::HogesController < UserController
 
