@@ -60,3 +60,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'rails-i18n'
 gem 'slim-rails'
+
+gem 'mini_magick'
+gem 'image_processing', '~> 1.2'
+
+# deviseは https://qiita.com/Yama-to/items/54ab4ce08e126ef7dade こちらを参考に作成してください
+# また、userテーブルはすでにあるため、 docker-compose run --rm web rails g model user で一度消してください
