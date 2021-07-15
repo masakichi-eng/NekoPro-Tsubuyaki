@@ -64,9 +64,9 @@ gem 'slim-rails'
 gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 
-# devise作成時に行うこと userテーブルが先にあるため、いくつか作業を願いします
+# devise作成時に行うこと userテーブルが先にあるため、いくつか作業を願いします（本来こんなことはしないのですが、すみません）
 # 1. docker-compose run --rm web rails db:migrate VERSION=0
 # 2. docker-compose run --rm web rails d model user で一度消してください
-# 3. db/migrate/20210714140502_create_posts.rb の t.references :user, foreign_key: :true, comment: 'ユーザーとの紐付け' をコメントアウト
+# 3. deviseで作られたmigrateファイルの xxxxx_devise_create... の xxxxx のところを 20210714140127 にしてください
 # 以上3点を行った後お願いします
 # deviseは https://qiita.com/Yama-to/items/54ab4ce08e126ef7dade こちらを参考に作成してください
