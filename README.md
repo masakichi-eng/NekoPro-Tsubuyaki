@@ -40,6 +40,12 @@ gemファイルを更新するときは
 
 `$ docker-compose exec web bash`
 
+### マイグレート
+
+すでにテーブルを作成しているため
+`$ docker-compose run --rm web rails db:migrate`
+をお願いします。
+
 以上で環境構築は終了です。
 
 以下のワイヤーフレームを参考にして作業を進めてください
