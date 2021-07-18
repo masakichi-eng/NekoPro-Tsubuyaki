@@ -63,5 +63,3 @@ Make fileにエイリアスを設定しました。以下のコマンドでも�
 - rubocop        `make lint`
 
 その他詳しくは Makefileを参照ください
-
-コンフリクト用記述
