@@ -1,0 +1,7 @@
+= form_with url: users_post_path, model: @post, local: true do |form|
+  = render 'layouts/error_messages', model: form.object
+  = form.label :photo
+  = form.file_field :photo
+  = form.label :description
+  = form.text_area :description
+  = form.submit "send"
