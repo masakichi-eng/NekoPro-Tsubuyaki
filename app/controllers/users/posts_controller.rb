@@ -4,6 +4,7 @@ class Users::PostsController < ApplicationController
   end
 
   def create
+    puts params.inspect
     @post = Post.new(post_paramas)
     if @post.save
       redirect_to root_path

@@ -1,1 +1,6 @@
-h1 Helo Worid
+.container
+  - flash.each do |key, value|
+    = content_tag(:div, value, class: key)
+
+  .text-danger
+    h1 Helo Worid

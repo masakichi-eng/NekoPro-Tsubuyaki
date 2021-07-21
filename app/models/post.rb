@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   with_options presence: true do
     validates :description, length: { maximum: 140 }
-    validates :photo
+    # validates :photo
   end
 
   belongs_to :user
