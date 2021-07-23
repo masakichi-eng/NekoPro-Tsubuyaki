@@ -8,4 +8,7 @@ html
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    = yield
+    .bg-light
+      = render partial: '/shared/header_nav'
+      = yield
+      = render partial: '/shared/footer'
