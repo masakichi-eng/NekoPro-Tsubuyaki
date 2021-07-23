@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "Users::Posts", type: :request do
-  # let(:post) {FactoryBot.create(:post)}
 
   before do
     @post = FactoryBot.create(:post)
@@ -15,7 +14,7 @@ RSpec.describe "Users::Posts", type: :request do
   it '記事投稿に成功したら記事が1件保存されること' do
     User.create(id: 1, name: 'test')
     expect{
-      post users_post_path, params: { post: {description: 'test description', photo: @post.photo}}
+      post users_post_path, params: { post: {description: 'test description', photo: Rack::Test::UploadedFile.new("public/images/text_image_300×300.png", "image/png")}}
     }.to change( Post, :count).by(1)
   end
 end
