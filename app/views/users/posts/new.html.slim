@@ -1,12 +1,18 @@
-.bg-secondary
-    .position-absolute.h-100.w-100.m-0.d-flex.text-center.align-items-center.justify-content-center
-      .form-group.col-4.bg-white.p-4.border.border-dark.rounded
-        h1.mt-3 投稿
-        = form_with url: users_post_path, model: @post, local: true do |form|
-          .text-danger.mt-3
-            = render 'error_messages', model: form.object
-          .form.mt-3
-            = form.text_area :description, placeholder: "説明文を入力"
-          .form.mt-3
-            = form.file_field :photo
-          = form.submit "+ 投稿", class: "btn btn-primary mt-3"
+.h-100.w-100.m-0.d-flex.text-center.align-items-center.justify-content-center
+  .form-group.col-4.bg-white.p-4.border.rounded
+    h2.mt-3 投稿
+
+    .user 
+      svg[width="30" height="30" viewbox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg"]
+        path[d="M21 41.8334C17.8501 41.8422 14.74 41.1295 11.9083 39.75C10.872 39.2459 9.87902 38.6571 8.93958 37.9895L8.65417 37.7812C6.07046 35.8742 3.95807 33.4004 2.47917 30.55C0.94945 27.5997 0.156057 24.3232 0.166561 21C0.166561 9.49403 9.49407 0.166626 21 0.166626C32.5059 0.166626 41.8334 9.49403 41.8334 21C41.8438 24.3216 41.0512 27.5966 39.5229 30.5458C38.0461 33.3946 35.9366 35.8675 33.3563 37.775C32.3828 38.4875 31.3499 39.1148 30.2688 39.65L30.1021 39.7333C27.2686 41.1202 24.1547 41.8386 21 41.8334ZM21 31.4166C17.8781 31.4105 15.016 33.1542 13.5896 35.9312C18.2592 38.2441 23.7408 38.2441 28.4104 35.9312V35.9208C26.9823 33.1468 24.12 31.4071 21 31.4166ZM21 27.25C25.5127 27.2558 29.6738 29.6877 31.8938 33.6166L31.925 33.5895L31.9542 33.5645L31.9188 33.5958L31.8979 33.6125C37.1667 29.0606 39.0506 21.7132 36.6222 15.1877C34.1938 8.6622 27.9648 4.33395 21.0021 4.33395C14.0394 4.33395 7.8104 8.6622 5.38198 15.1877C2.95356 21.7132 4.8375 29.0606 10.1062 33.6125C12.3276 29.6855 16.4883 27.2554 21 27.25ZM21 25.1666C16.3976 25.1666 12.6667 21.4357 12.6667 16.8333C12.6667 12.2309 16.3976 8.49996 21 8.49996C25.6024 8.49996 29.3333 12.2309 29.3333 16.8333C29.3333 19.0434 28.4554 21.163 26.8926 22.7258C25.3298 24.2887 23.2101 25.1666 21 25.1666ZM21 12.6666C18.6988 12.6666 16.8333 14.5321 16.8333 16.8333C16.8333 19.1345 18.6988 21 21 21C23.3012 21 25.1667 19.1345 25.1667 16.8333C25.1667 14.5321 23.3012 12.6666 21 12.6666Z" fill="#2E3A59"]
+      span.user-name まさきち
+
+    = form_with url: users_post_path, model: @post, local: true do |form|
+      .text-danger.mt-4
+        = render 'error_messages', model: form.object
+      .form.mt-4
+        = form.text_area :description, placeholder: "説明文を入力"
+      .form.mt-4
+        = form.label :photo, "画像をアップロード", class: "image_input_btn"
+        = form.file_field :photo, class: "btn btn-secondary"
+      = form.submit "+ 投稿", class: "btn btn-primary mt-4"

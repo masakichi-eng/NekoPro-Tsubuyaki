@@ -7,6 +7,9 @@ html
     = csp_meta_tag
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag "post", media: "all" 
   body
     = render 'shared/error_messages'
+    = render partial: '/shared/header_nav'
     = yield
+    = render partial: '/shared/footer'
