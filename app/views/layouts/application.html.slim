@@ -11,5 +11,6 @@ html
   body
     = render 'shared/error_messages'
     = render partial: '/shared/header_nav'
-    = yield
+    .content
+      = yield
     = render partial: '/shared/footer'

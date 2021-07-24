@@ -1,4 +1,4 @@
-body{
+.content{
   height: calc(100vh - 112px);
   background-color: #E5E5E5;
 }
