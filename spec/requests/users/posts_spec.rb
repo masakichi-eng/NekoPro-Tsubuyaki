@@ -6,15 +6,31 @@ RSpec.describe "Users::Posts", type: :request do
     @post = FactoryBot.create(:post)
   end
 
-  it '記事投稿画面の表示に成功すること' do
-    get new_users_post_path
-    expect(response).to have_http_status(200)
+  describe 'GET #new' do
+    it 'リクエストが成功すること' do
+      get new_users_post_path
+      expect(response.status).to eq 200
+    end
   end
-
-  it '記事投稿に成功したら記事が1件保存されること' do
-    User.create(id: 1, name: 'test')
-    expect{
+  
+  describe 'POST #create' do
+    it 'リクエストが成功すること' do
+      User.create(id: 1, name: 'test')
       post users_post_path, params: { post: {description: 'test description', photo: Rack::Test::UploadedFile.new("public/images/text_image_300×300.png", "image/png")}}
-    }.to change( Post, :count).by(1)
+      expect(response.status).to eq 302 
+    end
+
+    it '記事が登録されること' do
+      User.create(id: 1, name: 'test')
+      expect{
+        post users_post_path, params: { post: {description: 'test description', photo: Rack::Test::UploadedFile.new("public/images/text_image_300×300.png", "image/png")}}
+      }.to change(Post, :count).by(1)
+    end
+
+    it 'リダイレクトされること' do
+      User.create(id: 1, name: 'test')
+      post users_post_path, params: { post: {description: 'test description', photo: Rack::Test::UploadedFile.new("public/images/text_image_300×300.png", "image/png")}}
+      expect(response).to redirect_to root_path
+    end
   end
 end
