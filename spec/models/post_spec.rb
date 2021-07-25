@@ -12,7 +12,7 @@ RSpec.describe Post, type: :model do
       end
 
       it 'descriptionが140文字以内であれば投稿できる' do
-        @post.description = '123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/'
+        @post.description = 's' * 140
         expect(@post).to be_valid
       end
     end
@@ -25,7 +25,7 @@ RSpec.describe Post, type: :model do
       end
 
       it 'descriptionが140文字を超えていると投稿できない' do
-        @post.description = '123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/123456789/a'
+        @post.description = 's' * 141
         @post.valid?
         expect(@post.errors.full_messages).to include("Description is too long (maximum is 140 characters)")
       end
