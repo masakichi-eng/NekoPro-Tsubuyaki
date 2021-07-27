@@ -7,8 +7,13 @@ html
     = csp_meta_tag
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag "post", media: "all" 
+    script[src="https://kit.fontawesome.com/cef30cc9f3.js" crossorigin="anonymous"]
   body
-    .bg-light
-      = render partial: '/shared/header_nav'
+    = render partial: '/shared/header_nav'
+    .content
+      - flash.each do |key, value|
+        .alert.alert-success
+          = content_tag(:div, value, class: key)
       = yield
-      = render partial: '/shared/footer'
+    = render partial: '/shared/footer'

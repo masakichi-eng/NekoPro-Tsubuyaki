@@ -1,0 +1,31 @@
+.content{
+  height: calc(100vh - 112px);
+  background-color: #E5E5E5;
+}
+
+#post_description{
+  height: 15vh;
+  width: 25vw;
+}
+
+.user-name{
+  font-size: 30px;
+}
+
+.image_input_btn{
+  display: block;
+  background-color: #6C757D;
+  width: 180px;
+  height: 30px;
+  margin-top: 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+  padding-top: 2px;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+#file-upload-button{
+  display: none;
+}
