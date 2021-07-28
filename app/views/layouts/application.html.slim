@@ -9,10 +9,8 @@ html
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
 
   body
-    = render partial: '/shared/header_nav'
-    .content
-      - flash.each do |key, value|
-        .alert.alert-success
-          = content_tag(:div, value, class: key)
+    .bg-light
+      = render partial: '/shared/header_nav'
+      = render partial: '/shared/notice'
       = yield
-    = render partial: '/shared/footer'
+      = render partial: '/shared/footer'
