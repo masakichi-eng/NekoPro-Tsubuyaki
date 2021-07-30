@@ -1,0 +1,35 @@
+= stylesheet_link_tag "post", media: "all" 
+
+.content.bg-light
+  .h-100.w-100.m-0.d-flex.text-center.align-items-center.justify-content-center
+    .show-post.bg-white.p-4.border.rounded.d-flex.align-items-center
+      .container.post-content.my-auto
+        .row  
+          .col.image-content
+            = image_tag @post.photo, class: "image"
+          .col.text-left.text-content.d-flex.flex-column
+            span.user-name
+              / deviseと合流時にログインしているユーザー名current_user.nameに変更
+              i.far.fa-user-circle
+              |&nbsp;りょう
+              
+            p= @post.description
+
+            .row
+              i.fas.fa-heart.text-danger.ml-3
+              i.fas.fa-comment.mx-3
+            
+            .comment.mt-4
+              p 
+                b あかりん 
+                |&nbsp;綺麗な写真ですね、ステキ！
+              p 
+                b ララねえ
+                |&nbsp;どこでこの写真を撮ったのでしょうか？
+
+            .comment-form.form-group.mt-auto
+              .row 
+                .col-8
+                  = text_field_tag (:comment), "", class: "form-control", placeholder: "コメントする（未実装）"
+                .col-4
+                  = submit_tag "コメント", class: "btn btn-primary"

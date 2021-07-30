@@ -28,3 +28,13 @@
 #file-upload-button{
   display: none;
 }
+
+.show-post{
+  width: 1080px;
+  height: 580px;
+}
+
+.image{
+  width: 450px;
+  height: 300px;
+}
