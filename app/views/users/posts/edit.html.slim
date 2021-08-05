@@ -10,5 +10,4 @@
           / deviseと合流時にログインしているユーザー名current_user.nameに変更
           i.far.fa-user-circle
           |&nbsp;まさきち
-      = form_with url: users_post_path, model: @post, local: true do |form|
-        = render 'form', form: form
+        = render partial: 'form', locals: { post: @post, path: users_post_path }
