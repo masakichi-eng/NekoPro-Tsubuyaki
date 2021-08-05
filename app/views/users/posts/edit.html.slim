@@ -10,13 +10,5 @@
           / deviseと合流時にログインしているユーザー名current_user.nameに変更
           i.far.fa-user-circle
           |&nbsp;まさきち
-
       = form_with url: users_post_path, model: @post, local: true do |form|
-        .text-danger.mt-4
-          = render 'error_messages', model: form.object
-        .form.mt-4
-          = form.text_area :description, placeholder: "説明文を入力"
-        .form.mt-4
-          = form.label :photo, "画像をアップロード", class: "image_input_btn"
-          = form.file_field :photo, class: "btn btn-secondary"
-        = form.submit "+ 投稿", class: "btn btn-primary mt-4"
+        = render 'form', form: form
