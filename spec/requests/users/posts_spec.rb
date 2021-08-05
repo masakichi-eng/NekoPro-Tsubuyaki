@@ -75,4 +75,51 @@ RSpec.describe Users::PostsController, type: :request do
     end
     
   end
+
+  describe 'GET #edit' do
+    it 'リクエストが成功すること' do
+      get edit_users_post_path @post
+      expect(response.status).to eq 200
+    end
+  end
+
+  describe 'PUT #update' do
+    context 'パラメータが正常な場合' do
+      it 'リクエストが成功すること' do
+        patch users_post_path(id: @post.id), params: {post: {description: 'test description', photo: Rack::Test::UploadedFile.new("public/images/text_image_300×300.png", "image/png")}}
+        expect(response).to be_truthy
+      end
+
+      it '記事が登録されること' do
+        expect{
+          put users_post_path(id: @post.id), params: { post: {description: 'test description', photo: Rack::Test::UploadedFile.new("public/images/text_image_300×300.png", "image/png")}}
+        }.to_not change(Post, :count)
+      end
+
+      it 'リダイレクトされること' do
+        put users_post_path(id: @post.id), params: { post: {description: 'test description', photo: Rack::Test::UploadedFile.new("public/images/text_image_300×300.png", "image/png")}}
+        expect(response).to redirect_to users_post_path(@post)
+      end
+    end
+    context 'パラメータが不正な場合' do
+      it 'リクエストが成功すること' do
+        put users_post_path(id: @post.id), params: { post: {description: nil, photo: Rack::Test::UploadedFile.new("public/images/text_image_300×300.png", "image/png")}}
+        expect(response.status).to eq 200
+      end
+
+      it '記事が登録されないこと' do
+        expect{
+        put users_post_path(id: @post.id), params: { post: {description: nil, photo: Rack::Test::UploadedFile.new("public/images/text_image_300×300.png", "image/png")}}
+        }.to_not change(Post, :count)
+      end
+
+      it 'エラーが表示されること' do
+        put users_post_path(id: @post.id), params: { post: {description: nil, photo: Rack::Test::UploadedFile.new("public/images/text_image_300×300.png", "image/png")}}
+        expect(response.body).to include "Description can&#39;t be blank"
+      end
+
+      
+    end
+  end
+
 end
