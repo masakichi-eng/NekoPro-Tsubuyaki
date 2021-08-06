@@ -1,4 +1,6 @@
 class Users::PostsController < UserController
+  before_action :set_post, only: %i(show edit)
+
   def new
     @post = Post.new
   end
@@ -12,8 +14,17 @@ class Users::PostsController < UserController
     end
   end
 
-  def show
+  def show; end
+
+  def edit; end
+
+  def update
     @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to users_post_path(@post), notice: '記事が編集されました'
+    else
+      render :edit
+    end
   end
 
   private
@@ -21,5 +32,9 @@ class Users::PostsController < UserController
   def post_params
     # 投稿機能のみでuser_idは1固定、ユーザー管理が入ったらcurrent_user.idに変更
     params.require(:post).permit(:description, :photo).merge(user_id: 1)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 end
