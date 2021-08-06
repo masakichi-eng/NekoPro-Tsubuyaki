@@ -86,31 +86,30 @@ RSpec.describe Users::PostsController, type: :request do
   describe 'PUT #update' do
     context 'パラメータが正常な場合' do
       it 'リクエストが成功すること' do
-        patch users_post_path(id: @post.id), params: {post: {description: 'test description', photo: Rack::Test::UploadedFile.new("public/images/text_image_300×300.png", "image/png")}}
+        put users_post_path(id: @post.id), params: {post: {description: 'edit description', photo: Rack::Test::UploadedFile.new("public/images/text_image_300×300.png", "image/png")}}
         expect(response).to be_truthy
       end
 
-      it '記事が登録されること' do
-        expect{
-          put users_post_path(id: @post.id), params: { post: {description: 'test description', photo: Rack::Test::UploadedFile.new("public/images/text_image_300×300.png", "image/png")}}
-        }.to_not change(Post, :count)
+      it '記事が編集されること' do
+        put users_post_path(id: @post.id), params: { post: {description: 'edit description', photo: Rack::Test::UploadedFile.new("public/images/text_image_300×300.png", "image/png")}}
+        expect(Post.find(@post.id).description).to eq('edit description')
       end
 
       it 'リダイレクトされること' do
-        put users_post_path(id: @post.id), params: { post: {description: 'test description', photo: Rack::Test::UploadedFile.new("public/images/text_image_300×300.png", "image/png")}}
+        put users_post_path(id: @post.id), params: { post: {description: 'edit description', photo: Rack::Test::UploadedFile.new("public/images/text_image_300×300.png", "image/png")}}
         expect(response).to redirect_to users_post_path(@post)
       end
     end
     context 'パラメータが不正な場合' do
-      it 'リクエストが成功すること' do
+      it 'リクエストが成功するがデータは編集されないこと' do
         put users_post_path(id: @post.id), params: { post: {description: nil, photo: Rack::Test::UploadedFile.new("public/images/text_image_300×300.png", "image/png")}}
         expect(response.status).to eq 200
+        expect(Post.find(@post.id).description).to eq(@post.description)
       end
 
-      it '記事が登録されないこと' do
-        expect{
+      it '記事が編集されないこと' do
         put users_post_path(id: @post.id), params: { post: {description: nil, photo: Rack::Test::UploadedFile.new("public/images/text_image_300×300.png", "image/png")}}
-        }.to_not change(Post, :count)
+        expect(Post.find(@post.id).description).to eq(@post.description)
       end
 
       it 'エラーが表示されること' do
