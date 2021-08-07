@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2021_08_06_153632) do
     t.text "description", comment: "投稿内容"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.datetime "discarded_at"
+    t.datetime "discarded_at", comment: "論理削除した日時"
     t.index ["discarded_at"], name: "index_posts_on_discarded_at"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
