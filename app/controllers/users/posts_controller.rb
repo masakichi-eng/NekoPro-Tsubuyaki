@@ -1,5 +1,5 @@
 class Users::PostsController < UserController
-  before_action :set_post, only: %i(show edit)
+  before_action :set_post, only: %i(show edit destroy)
 
   def new
     @post = Post.new
@@ -24,6 +24,14 @@ class Users::PostsController < UserController
       redirect_to users_post_path(@post), notice: '記事が編集されました'
     else
       render :edit
+    end
+  end
+
+  def destroy
+    if @post.discard
+      redirect_to root_path, notice: '記事が削除されました'
+    else
+      render :show
     end
   end
 
