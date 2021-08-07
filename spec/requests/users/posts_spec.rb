@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Users::PostsController, type: :request do
 
   before do
-    User.create(id: 1, name: 'test')
+    User.create(id: 1, name: 'test', email: 'test@test')
     @post = FactoryBot.create(:post)
     @not_post_id = @post.id + 1
   end
@@ -118,6 +118,25 @@ RSpec.describe Users::PostsController, type: :request do
       end
 
       
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    it 'リクエストが成功すること' do
+      delete users_post_path(@post)
+      expect(response).to be_truthy
+    end
+
+    it 'ユーザーが論理削除され、discaded_atに日付が入ること' do
+      expect do
+      delete users_post_path(@post)
+      end.to change(Post, :count).by(-1)
+      expect(Post.with_discarded.find(@post.id).discarded_at.strftime("%Y-%m-%d %H:%M:%S")).to eq(Time.now.strftime("%Y-%m-%d %H:%M:%S"))
+    end
+
+    it 'ユーザー一覧にリダイレクトすること' do
+      delete users_post_path(@post)
+      expect(response).to redirect_to(root_path)
     end
   end
 
