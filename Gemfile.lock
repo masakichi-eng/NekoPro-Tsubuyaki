@@ -269,7 +269,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
-  discard
+  discard (~> 1.2)
   factory_bot_rails
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
