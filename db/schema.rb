@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(version: 2021_07_14_152621) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.string "last_name", null: false
+    t.string "first_name", null: false
+    t.string "last_name_kana", null: false
+    t.string "first_name_kana", null: false
+    t.date "birth_date", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -51,11 +61,6 @@ ActiveRecord::Schema.define(version: 2021_07_14_152621) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "nickname", null: false
-    t.string "last_name", null: false
-    t.string "first_name", null: false
-    t.string "last_name_kana", null: false
-    t.string "first_name_kana", null: false
-    t.date "birth_date", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
