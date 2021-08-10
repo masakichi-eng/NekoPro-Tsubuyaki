@@ -1,14 +1,10 @@
 class User < ApplicationRecord
   include Discard::Model
-  has_many :posts, dependent: :destroy
+  before_destroy :posts_discard
+  has_many :posts, dependent: :nullify
 
-  after_discard do
-    puts posts
+  def posts_discard
     posts.discard_all
-  end
-
-  after_undiscard do
-    posts.undiscard_all
   end
 
 end

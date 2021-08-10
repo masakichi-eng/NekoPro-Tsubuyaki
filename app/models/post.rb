@@ -1,10 +1,7 @@
 class Post < ApplicationRecord
   include Discard::Model
-  scope :kept, -> { undiscarded.joins(:user).merge(User.kept) }
+  default_scope -> { kept }
 
-  def kept?
-    undiscarded? && user.kept?
-  end
   
   with_options presence: true do
     validates :description, length: { maximum: 140 }
