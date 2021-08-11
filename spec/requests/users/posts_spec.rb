@@ -134,7 +134,7 @@ RSpec.describe Users::PostsController, type: :request do
       expect(Post.with_discarded.find(@post.id).discarded_at.strftime("%Y-%m-%d %H:%M:%S")).to eq(Time.now.strftime("%Y-%m-%d %H:%M:%S"))
     end
 
-    it '記事の論理削除を復元できること' do
+    it '記事の論理削除後に復元できること' do
       @post.discard
       expect(Post.with_discarded.find(@post.id).discarded_at.strftime("%Y-%m-%d %H:%M:%S")).to eq(Time.now.strftime("%Y-%m-%d %H:%M:%S"))
       @post.undiscard
