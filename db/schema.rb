@@ -37,13 +37,12 @@ ActiveRecord::Schema.define(version: 2021_08_06_153632) do
   end
 
   create_table "posts", comment: "投稿関連", force: :cascade do |t|
-    t.bigint "user_id", comment: "ユーザーとの紐付け"
+    t.integer "user_id", comment: "ユーザーとの紐付け"
     t.text "description", comment: "投稿内容"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "discarded_at", comment: "論理削除した日時"
     t.index ["discarded_at"], name: "index_posts_on_discarded_at"
-    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "users", comment: "ユーザー関連", force: :cascade do |t|
@@ -53,5 +52,4 @@ ActiveRecord::Schema.define(version: 2021_08_06_153632) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "posts", "users"
 end
