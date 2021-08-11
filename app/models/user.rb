@@ -6,5 +6,4 @@ class User < ApplicationRecord
   def posts_discard
     posts.discard_all
   end
-
 end

@@ -1,13 +1,2 @@
 = stylesheet_link_tag "post", media: "all" 
 h1 Hello World
-.container
-  .row
-    - @posts.each do |post|
-      .card.col-6
-        = link_to users_post_path(post) do
-          - if post.user 
-            p= post.user.name
-          - else
-            p= "削除ユーザー"
-          p= post.description
-          = image_tag post.photo, class: "image"
