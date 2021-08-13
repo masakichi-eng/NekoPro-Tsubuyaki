@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_14_152621) do
+ActiveRecord::Schema.define(version: 2021_08_06_153632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,11 +37,12 @@ ActiveRecord::Schema.define(version: 2021_07_14_152621) do
   end
 
   create_table "posts", comment: "投稿関連", force: :cascade do |t|
-    t.bigint "user_id", comment: "ユーザーとの紐付け"
+    t.integer "user_id", comment: "ユーザーとの紐付け"
     t.text "description", comment: "投稿内容"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_posts_on_user_id"
+    t.datetime "discarded_at", comment: "論理削除した日時"
+    t.index ["discarded_at"], name: "index_posts_on_discarded_at"
   end
 
   create_table "users", comment: "ユーザー関連", force: :cascade do |t|
@@ -51,5 +52,4 @@ ActiveRecord::Schema.define(version: 2021_07_14_152621) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "posts", "users"
 end
