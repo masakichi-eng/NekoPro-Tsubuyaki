@@ -126,12 +126,12 @@ RSpec.describe Users::PostsController, type: :request do
       expect do
       delete users_post_path(@post)
       end.to change(Post, :count).by(-1)
-      expect(Post.with_discarded.find(@post.id).discarded_at.strftime("%Y-%m-%d %H:%M:%S")).to eq(Time.now.strftime("%Y-%m-%d %H:%M:%S"))
+      expect(Post.with_discarded.find(@post.id).discarded_at.to_s).to eq(Time.current.to_s)
     end
 
     it '記事の論理削除後に復元できること' do
       @post.discard
-      expect(Post.with_discarded.find(@post.id).discarded_at.strftime("%Y-%m-%d %H:%M:%S")).to eq(Time.now.strftime("%Y-%m-%d %H:%M:%S"))
+      expect(Post.with_discarded.find(@post.id).discarded_at.to_s).to eq(Time.current.to_s)
       @post.undiscard
       expect(Post.with_discarded.find(@post.id).discarded_at).to eq(nil)
     end
