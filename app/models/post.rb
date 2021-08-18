@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   include Discard::Model
-  default_scope -> { kept }
+  default_scope -> { kept.order(created_at: :desc) }
 
   with_options presence: true do
     validates :description, length: { maximum: 140 }

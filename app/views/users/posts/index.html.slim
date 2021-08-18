@@ -1,0 +1,20 @@
+= stylesheet_link_tag "post", media: "all" 
+
+.container-field.content.text-center.overflow-auto
+  .my-page-head
+    h4.my-3 マイページ
+
+    .row.d-flex.justify-content-center.my-3
+      h4
+        i.far.fa-user-circle.mx-2
+        = "りょう"
+      = link_to "プロフィールを表示", users_posts_path, class: "btn btn-outline-secondary w-auto mx-2"
+
+    hr
+    
+  .row
+      - @posts.each do |post|
+        .col-md-4
+          .card.mb-2.mt-4
+            = link_to users_post_path(post) do
+              = image_tag post.photo, class: "img-fluid img-height" 

@@ -1,6 +1,10 @@
 class Users::PostsController < UserController
   before_action :set_post, only: %i(show edit destroy)
 
+  def index
+    @posts = Post.all.where(user_id: 1)
+  end
+
   def new
     @post = Post.new
   end
