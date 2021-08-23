@@ -1,6 +1,8 @@
 class Users::PostsController < UserController
   before_action :set_post, only: %i(show edit destroy)
 
+  def index; end
+
   def new
     @post = Post.new
   end
