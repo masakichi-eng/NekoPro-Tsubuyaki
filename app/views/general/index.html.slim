@@ -1,2 +1,47 @@
 = stylesheet_link_tag "post", media: "all" 
-h1 Hello World
+
+.container-field.content.text-center.overflow-auto
+    
+  .row.d-flex.justify-content-center
+    - @posts.order(created_at: :desc).each do |post|
+      .col-md-5
+        .card.mb-2.mt-4
+          = link_to users_post_path(post), class: "text-muted" do
+            .row
+              .col.text-left.m-3
+                = post.description
+              .col.text-right.m-3
+                i.far.fa-user-circle
+                |&nbsp;
+                b= post.user.name
+            = image_tag post.photo, class: "img-fluid img-height-index" 
+            .row
+              .col.m-3
+                .row
+                  i.fas.fa-heart.text-danger.ml-3
+                  i.fas.fa-comment.mx-3
+              .col.m-3
+                .date.text-right
+                  = post.created_at.strftime("%Y-%m-%d %H:%M")
+            
+            .comment.text-left.ml-3
+              p
+                i.far.fa-user-circle
+                |&nbsp;
+                b あかりん 
+                |&nbsp;綺麗な写真ですね、ステキ！
+              p 
+                i.far.fa-user-circle
+                |&nbsp;
+                b ララねえ
+                |&nbsp;どこでこの写真を撮ったのでしょうか？
+
+          .comment-form.form-group.mt-auto
+            .row 
+              .col-8.ml-3
+                = text_field_tag (:comment), "", class: "form-control", placeholder: "コメントする（未実装）"
+              .col-3
+                = submit_tag "コメント", class: "btn btn-primary"
+
+  .d-flex.justify-content-center.mt-2
+    = paginate @posts
