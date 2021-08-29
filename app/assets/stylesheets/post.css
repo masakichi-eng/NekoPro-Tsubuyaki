@@ -44,5 +44,9 @@
 }
 
 .img-height-index{
-  height: 280px;
+  height: 30vh;
+}
+
+.post-general{
+  height: calc(100vh - 248px);
 }

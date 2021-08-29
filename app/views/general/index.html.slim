@@ -5,22 +5,22 @@
   .row.d-flex.justify-content-center
     - @posts.order(created_at: :desc).each do |post|
       .col-md-5
-        .card.mb-2.mt-4
+        .card.mb-2.mt-4.post-general
           = link_to users_post_path(post), class: "text-muted" do
             .row
-              .col.text-left.m-3
+              .col-7.text-left.ml-3.my-2
                 = post.description
-              .col.text-right.m-3
+              .col.text-right.mr-3.my-2
                 i.far.fa-user-circle
                 |&nbsp;
                 b= post.user.name
             = image_tag post.photo, class: "img-fluid img-height-index" 
             .row
-              .col.m-3
+              .col.ml-3.my-2
                 .row
                   i.fas.fa-heart.text-danger.ml-3
                   i.fas.fa-comment.mx-3
-              .col.m-3
+              .col.mr-3.my-2
                 .date.text-right
                   = post.created_at.strftime("%Y-%m-%d %H:%M")
             
