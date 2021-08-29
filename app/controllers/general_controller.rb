@@ -1,5 +1,5 @@
 class GeneralController < ApplicationController
   def index
-    @posts = Post.page(params[:page]).per(2).includes(:user)
+    @posts = Post.includes(:user).page(params[:page])
   end
 end
