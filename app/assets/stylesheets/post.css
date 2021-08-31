@@ -42,3 +42,11 @@
 .img-height{
   height: 250px;
 }
+
+.img-height-index{
+  height: 30vh;
+}
+
+.post-general{
+  height: calc(100vh - 248px);
+}

@@ -1,3 +1,5 @@
 class GeneralController < ApplicationController
-  def index; end
+  def index
+    @posts = Post.includes(:user).page(params[:page]).per(2).order(created_at: :desc)
+  end
 end
