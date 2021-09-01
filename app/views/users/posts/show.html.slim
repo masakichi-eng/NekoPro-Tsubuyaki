@@ -18,8 +18,12 @@
             p= @post.description
 
             .row
-              i.fas.fa-heart.text-danger.ml-3
-              i.fas.fa-comment.mx-3
+              .col.ml-3.my-2
+                .row
+                  .likes id = "like_#{@post.id}"
+                    = render 'users/likes/like', post: @post
+                  .comment
+                    i.fas.fa-comment.mx-3
             
             .comment.mt-4
               p 

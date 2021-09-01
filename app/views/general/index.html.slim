@@ -15,11 +15,15 @@
                 |&nbsp;
                 b= post.user.name
             = image_tag post.photo, class: "img-fluid img-height-index" 
+            
             .row
               .col.ml-3.my-2
                 .row
-                  i.fas.fa-heart.text-danger.ml-3
-                  i.fas.fa-comment.mx-3
+                  .likes id = "like_#{post.id}"
+                    = render 'users/likes/like', post: post
+                  .comment
+                    i.fas.fa-comment.mx-3
+
               .col.mr-3.my-2
                 .date.text-right
                   = post.created_at.strftime("%Y-%m-%d %H:%M")
