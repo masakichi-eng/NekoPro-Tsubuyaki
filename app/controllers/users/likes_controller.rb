@@ -12,7 +12,7 @@ class Users::LikesController < UserController
   private
 
   def set_item
-    @post = Post.find_by(id: params[:post_id])
+    @post = Post.find(params[:post_id])
   end
 
 end
