@@ -3,6 +3,9 @@ class User < ApplicationRecord
   before_destroy :posts_discard
   has_many :posts, dependent: :nullify
 
+  has_many :likes, dependent: :destroy
+  has_many :like_posts, through: :likes, source: :post
+
   def posts_discard
     posts.discard_all
   end
