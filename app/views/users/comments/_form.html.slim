@@ -1,0 +1,7 @@
+= form_with model: [post, post.comments], url: users_post_comments_path(post) do |f|
+  .comment-form.form-group
+    .row
+      .col-8.ml-4
+        = f.text_field (:comment), class: "form-control", id: "comment-text-#{post.id}"
+      .col
+        = f.submit "コメント", class: "btn btn-primary"

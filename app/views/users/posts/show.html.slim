@@ -26,12 +26,14 @@
                     i.fas.fa-comment.mx-3
             
             .comment.mt-4
-              p 
-                b あかりん 
-                |&nbsp;綺麗な写真ですね、ステキ！
-              p 
-                b ララねえ
-                |&nbsp;どこでこの写真を撮ったのでしょうか？
+              - @post.comments.each do |comment|
+                p
+                  i.far.fa-user-circle
+                  |&nbsp;
+                  b 
+                    = comment.user.name
+                  |&nbsp;
+                  = comment.comment
 
             .comment-form.form-group.mt-auto
               .row 

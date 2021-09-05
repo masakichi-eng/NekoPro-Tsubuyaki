@@ -28,24 +28,11 @@
                 .date.text-right
                   = post.created_at.strftime("%Y-%m-%d %H:%M")
             
-            .comment.text-left.ml-3
-              p
-                i.far.fa-user-circle
-                |&nbsp;
-                b あかりん 
-                |&nbsp;綺麗な写真ですね、ステキ！
-              p 
-                i.far.fa-user-circle
-                |&nbsp;
-                b ララねえ
-                |&nbsp;どこでこの写真を撮ったのでしょうか？
+            .comment-area.text-left.ml-3.overflow-auto id = "comments-#{post.id}"
+              = render partial: 'users/comments/index', locals: { post: post }
 
-          .comment-form.form-group.mt-auto
-            .row 
-              .col-8.ml-3
-                = text_field_tag (:comment), "", class: "form-control", placeholder: "コメントする（未実装）"
-              .col-3
-                = submit_tag "コメント", class: "btn btn-primary"
+            = render partial: 'users/comments/form', locals: { post: post }
+
 
   .d-flex.justify-content-center.mt-2
     = paginate @posts
