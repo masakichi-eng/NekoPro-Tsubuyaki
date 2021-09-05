@@ -1,0 +1,74 @@
+.user_form{
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.login-wrap{
+    margin-top: 50px;
+    width: 50%;
+    min-width: 800px;
+    height: auto;
+    border-radius: 10px;
+    background-color: rgba(220,220,220,0.7);
+}
+
+.login-html{
+    margin: 50px;
+}
+
+.sign-in-htm{
+    padding: auto;
+}
+
+.form-group{
+    margin: 18px auto 60px;
+    padding: 10px 50px 0;
+}
+
+.remember-check{
+    margin: 10px auto;
+    padding: 10px 50px;
+}
+
+.tab, .label {
+    font-weight: 300;
+}
+
+.page-title{
+    text-align: center;
+    font-size: 32px;
+}
+
+.title{
+    margin:0 auto 10px;
+    width: 100%;
+    font-size: 14px;
+}
+
+
+.input-default{
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    display: block;
+    border:solid 2px #000000 ;
+    resize: none;
+    box-sizing: border-box;
+}
+
+.login-btn{
+    width: 240px;
+    height: 48px;
+    background-color: #ffd700;
+    margin: 0 auto;
+    padding: 10px;
+    cursor: pointer;
+    display: block;
+    border: none;
+    color: #383838;
+    border-radius: 10px;
+}
