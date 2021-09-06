@@ -1,31 +1,31 @@
-= stylesheet_link_tag "bootstrap", media: "all"
+= stylesheet_link_tag "users", media: "all"
 
-.justify-content-center style="width: 300px"
-  = form_with model: @user, url:user_registration_path, class:"justify-content-center", local:true do |f|
-    h2
-      | Sign up
-    = render "devise/shared/error_messages", resource: resource
-    .field.form-group
-      = f.label :nickname
-      br
-      = f.text_area :nickname, autofocus: true, autocomplete: "nickname"
-    .field.form-group
-      = f.label :email
-      br
-      = f.email_field :email, autofocus: true, autocomplete: "email"
-    .field.form-group
-      = f.label :password
-      - if @minimum_password_length
-        em
-          | (
-          = @minimum_password_length
-          |  characters minimum)
-      br
-      = f.password_field :password, autocomplete: "new-password"
-    .field.form-group
-      = f.label :password_confirmation
-      br
-      = f.password_field :password_confirmation, autocomplete: "new-password"
-    .actions
-      = f.submit "Sign up"
+= form_with model:@user, url: user_registration_path, class: 'user_form', local: true do |f|
+  .login-wrap
+    .login-html
+      .page-title
+        h4
+          | サインアップ
+      .login-form
+        .sign-in-htm
+          .form-group
+            = f.label :nickname
+            br
+            = f.text_field :nickname, class:"input-default", autofocus: true, autocomplete: "nickname"
+          .form-group
+            = f.label :email, class: 'title'
+            br
+            = f.email_field :email, class:"input-default", autofocus: true
+          .form-group
+            = f.label :password, class: 'title'
+            br
+            = f.password_field :password, class:"input-default"
+          .form-group
+            = f.label :password_confirmation
+            br
+            = f.password_field :password_confirmation, class:"input-default", autocomplete: "new-password"
+
+          .actions
+            = f.submit "Sign Up", class:"login-btn"
+
 = render "devise/shared/links"
