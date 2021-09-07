@@ -1,9 +1,8 @@
 class Users::CommentsController < UserController
-  before_action :set_item
+  before_action :set_item, only: %i(create destroy)
   
   def create
-    #投稿に紐づいたコメントを作成
-    @post.comments.build(comment_params).save
+    Comment.create(user_id: 1, post_id: @post.id, comment: params[:comment][:comment])
     render :index
   end
 
@@ -13,10 +12,6 @@ class Users::CommentsController < UserController
   end
 
   private
-  def comment_params
-    params.require(:comment).permit(:comment, :item_id, :user_id).merge(user_id: 1)
-  end
-
   def set_item
     @post = Post.find(params[:post_id])
   end
