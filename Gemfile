@@ -69,6 +69,8 @@ gem 'devise'
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 
+gem 'pry-rails'
+
 # devise作成時に行うこと userテーブルが先にあるため、いくつか作業を願いします（本来こんなことはしないのですが、すみません）
 # 1. docker-compose run --rm web rails db:migrate VERSION=0
 # 2. docker-compose run --rm web rails d model user で一度消してください
