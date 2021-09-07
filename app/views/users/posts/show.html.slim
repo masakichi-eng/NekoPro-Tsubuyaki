@@ -25,19 +25,7 @@
                   .comment
                     i.fas.fa-comment.mx-3
             
-            .comment.mt-4
-              - @post.comments.each do |comment|
-                p
-                  i.far.fa-user-circle
-                  |&nbsp;
-                  b 
-                    = comment.user.name
-                  |&nbsp;
-                  = comment.comment
+            .comment-area-show.text-left.ml-3.overflow-auto id = "comments-#{@post.id}"
+              = render partial: 'users/comments/index', locals: { post: @post }
 
-            .comment-form.form-group.mt-auto
-              .row 
-                .col-8
-                  = text_field_tag (:comment), "", class: "form-control", placeholder: "コメントする（未実装）"
-                .col-4
-                  = submit_tag "コメント", class: "btn btn-primary"
+            = render partial: 'users/comments/form', locals: { post: @post }
