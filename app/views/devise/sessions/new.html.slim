@@ -7,6 +7,7 @@
         h4
           | ログイン
       .login-form
+        = render "devise/shared/error_messages", model: f.object
         .sign-in-htm
           .form-group
             = f.label :email, class: 'title'
