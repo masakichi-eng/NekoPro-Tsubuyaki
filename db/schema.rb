@@ -50,8 +50,10 @@ ActiveRecord::Schema.define(version: 2021_07_14_152621) do
     t.string "last_name_kana", null: false
     t.string "first_name_kana", null: false
     t.date "birth_date", null: false
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
