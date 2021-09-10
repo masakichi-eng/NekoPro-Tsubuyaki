@@ -1,5 +1,5 @@
-- if model.errors.any?
+- if resource.errors.any?
   .error-alert
     ul
-      - model.errors.full_messages.each do |message|
+      - resource.errors.full_messages.each do |message|
         li.error-message= message

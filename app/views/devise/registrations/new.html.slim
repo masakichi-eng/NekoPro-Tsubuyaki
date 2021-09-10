@@ -7,7 +7,7 @@
         h4
           | サインアップ
       .login-form
-        = render "devise/shared/error_messages", model: f.object
+        = render "devise/shared/error_messages", resource: @user
         .sign-in-htm
           .form-group
             = f.label :nickname
@@ -27,6 +27,6 @@
             = f.password_field :password_confirmation, class:"input-default", autocomplete: "new-password"
 
           .actions
-            = f.submit "Sign Up", class:"login-btn"
+            = f.submit "Next", class:"login-btn"
 
 = render "devise/shared/links"
