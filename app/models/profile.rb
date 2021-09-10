@@ -13,4 +13,6 @@ class Profile < ApplicationRecord
     end
     validates :birth_date
   end
+
+  belongs_to :user
 end
