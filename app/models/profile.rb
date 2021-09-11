@@ -14,5 +14,5 @@ class Profile < ApplicationRecord
     validates :birth_date
   end
 
-  belongs_to :user
+  belongs_to :user, optional: true
 end

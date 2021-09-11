@@ -21,6 +21,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
     render :new_profile
   end
 
+  def create_profile
+    @user = User.new(session["devise.regist_data"]["user"])
+    @profile = Profile.new(profile_params)
+      unless @profile.valid?
+        render :new_profile and return
+      end
+    @user.build_profile(@profile.attributes)
+    @user.save
+    session["devise.regist_data"]["user"].clear
+    sign_in(:user, @user)
+  end
+
   # GET /resource/edit
   # def edit
   #   super
@@ -66,4 +78,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  private
+
+  def profile_params
+    params.require(:profile).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :birth_date)
+  end
 end
