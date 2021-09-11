@@ -31,7 +31,7 @@
             .comment-area.text-left.ml-3.overflow-auto id = "comments-#{post.id}"
               = render partial: 'users/comments/index', locals: { post: post }
 
-            = render partial: 'users/comments/form', locals: { post: post }
+            = render partial: 'users/comments/form', locals: { post: post, comment: post.comments }
 
 
   .d-flex.justify-content-center.mt-2
