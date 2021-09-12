@@ -29,6 +29,17 @@
     padding: 10px 50px 0;
 }
 
+.name-form-group{
+    display: flex;
+    justify-content: space-around;
+}
+
+.name-form{
+    margin: 18px auto 60px;
+    padding: 10px 50px 0;
+    width: 250px;
+}
+
 .remember-check{
     margin: 10px auto;
     padding: 10px 50px;
@@ -60,6 +71,18 @@
     box-sizing: border-box;
 }
 
+.input-birth-wrap select{
+    width: 90px;
+    margin-top: 5px;
+    height: 40px;
+    font-size: 16px;
+    padding-left: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: #fff;
+    cursor: pointer;  
+}
+
 .login-btn{
     width: 240px;
     height: 48px;
@@ -71,4 +94,13 @@
     border: none;
     color: #383838;
     border-radius: 10px;
+}
+
+.register-complete{
+    text-align: center;
+}
+
+.root-link{
+    text-align: center;
+    text-decoration: none;
 }
