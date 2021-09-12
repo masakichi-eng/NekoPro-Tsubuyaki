@@ -1,4 +1,8 @@
-h2
-  | 登録が完了しました
+= stylesheet_link_tag "users", media: "all"
 
-= link_to "トップへ戻る", root_path
+.user_form
+  .login-wrap
+    h2.register-complete
+      | 登録が完了しました
+
+    = link_to "トップへ戻る", root_path, class: "root-link"
