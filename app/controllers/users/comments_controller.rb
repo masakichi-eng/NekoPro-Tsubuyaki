@@ -3,12 +3,12 @@ class Users::CommentsController < UserController
 
   def create
     Comment.create(user_id: 1, post_id: @post.id, comment: params[:comment][:comment])
-    render :index
+    redirect_back fallback_location: root_path
   end
-
+  
   def destroy
     Comment.find(params[:id]).destroy
-    render :index
+    redirect_back fallback_location: root_path
   end
 
   private
