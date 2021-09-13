@@ -5,31 +5,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  def new
-    @user = User.new
-  end
+  # def new
+  #   super
+  # end
 
   # POST /resource
-  def create
-    @user = User.new(sign_up_params)
-    render :new and return unless @user.valid?
-
-    session['devise.regist_data'] = { user: @user.attributes }
-    session['devise.regist_data'][:user]['password'] = params[:user][:password]
-    @profile = @user.build_profile
-    render :new_profile
-  end
-
-  def create_profile
-    @user = User.new(session['devise.regist_data']['user'])
-    @profile = Profile.new(profile_params)
-    render :new_profile and return unless @profile.valid?
-
-    @user.build_profile(@profile.attributes)
-    @user.save
-    session['devise.regist_data']['user'].clear
-    sign_in(:user, @user)
-  end
+  # def create
+  #   super
+  # end
 
   # GET /resource/edit
   # def edit
@@ -77,9 +60,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
-  private
-
-  def profile_params
-    params.require(:profile).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :birth_date)
-  end
 end
