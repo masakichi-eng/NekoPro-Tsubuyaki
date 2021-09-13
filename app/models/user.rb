@@ -8,5 +8,4 @@ class User < ApplicationRecord
   validates :password, format: { with: PASSWORD_REGEX }
 
   has_many :posts
-  has_one :profile
 end
