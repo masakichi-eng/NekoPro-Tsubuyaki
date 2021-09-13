@@ -16,9 +16,7 @@ class Users::PostsController < UserController
     end
   end
 
-  def show
-    @comments = Comment.where(post_id: params[:post_id])
-  end
+  def show; end
 
   def edit; end
 
