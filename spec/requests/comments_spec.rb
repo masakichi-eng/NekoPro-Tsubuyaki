@@ -10,24 +10,24 @@ RSpec.describe "Comments", type: :request do
 
   describe "POST #create" do
     it 'リクエストが成功すること' do
-        post path_build_comment, params: { comment: {comment: build_comment }}, xhr: true
+        post path_build_comment, params: { comment: {comment: build_comment }}
       expect(response).to be_truthy
     end
     it 'コメント投稿が成功してモデルが増えること' do
       expect do
-        post path_build_comment, params: { comment: {comment: build_comment }}, xhr: true
+        post path_build_comment, params: { comment: {comment: build_comment }}
       end.to change(Comment, :count).by(1)
     end
   end
   
   describe "DELETE #destroy" do
     it 'リクエストが成功すること' do
-      delete path_created_comment, xhr: true
+      delete path_created_comment
       expect(response).to be_truthy
     end
     it 'コメント削除が成功してモデルが減ること' do
       expect do
-        delete path_created_comment, xhr: true
+        delete path_created_comment
       end.to change(Comment, :count).by(-1)
     end
   end
