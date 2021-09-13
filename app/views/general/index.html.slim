@@ -39,9 +39,9 @@
                   = comment.comment
 
                   - if comment.user.id == 1
-                    = link_to "削除", users_post_comment_path(post.id, comment.id), method: :delete, remote: true, class: "btn btn-danger btn-sm ml-2"
+                    = link_to "削除", users_post_comment_path(post.id, comment.id), method: :delete, class: "btn btn-danger btn-sm ml-2"
 
-            = form_with model: [post, post.comments], url: users_post_comments_path(post) do |f|
+            = form_with url: users_post_comments_path(post), local: true do |f|
               .comment-form.form-group
                 .row
                   .col-8.ml-4
