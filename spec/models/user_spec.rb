@@ -10,14 +10,15 @@ RSpec.describe User, type: :model do
       it 'すべての項目を入力していれば登録できる' do
         expect(@user).to be_valid
       end
-
-      it 'nicknameが空でも登録できる' do
-        @user.nickname = ""
-        expect(@user).to be_valid
-      end
     end
 
     context 'ユーザー登録ができないとき' do
+      it 'nicknameが空でも登録できる' do
+        @user.nickname = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Nickname can't be blank")
+      end
+
       it 'emailが空だと登録ができないとき' do
         @user.email = ""
         @user.valid?

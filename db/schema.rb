@@ -47,13 +47,12 @@ ActiveRecord::Schema.define(version: 2021_08_31_114720) do
   end
 
   create_table "posts", comment: "投稿関連", force: :cascade do |t|
-    t.bigint "user_id", comment: "ユーザーとの紐付け"
+    t.integer "user_id", comment: "ユーザーとの紐付け"
     t.text "description", comment: "投稿内容"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "discarded_at", comment: "論理削除した日時"
     t.index ["discarded_at"], name: "index_posts_on_discarded_at"
-    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -62,7 +61,7 @@ ActiveRecord::Schema.define(version: 2021_08_31_114720) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "nickname"
+    t.string "nickname", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -72,5 +71,4 @@ ActiveRecord::Schema.define(version: 2021_08_31_114720) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
-  add_foreign_key "posts", "users"
 end
