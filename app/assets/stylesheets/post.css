@@ -1,0 +1,52 @@
+.content{
+  height: calc(100vh - 128px);
+}
+
+#post_description{
+  height: 15vh;
+  width: 25vw;
+}
+
+.user-name{
+  font-size: 30px;
+}
+
+.image_input_btn{
+  display: block;
+  background-color: #6C757D;
+  width: 180px;
+  height: 30px;
+  margin-top: 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+  padding-top: 2px;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+#file-upload-button{
+  display: none;
+}
+
+.show-post{
+  width: 1080px;
+  height: 580px;
+}
+
+.image{
+  width: 450px;
+  height: 300px;
+}
+
+.img-height{
+  height: 250px;
+}
+
+.img-height-index{
+  height: 30vh;
+}
+
+.post-general{
+  height: calc(100vh - 248px);
+}

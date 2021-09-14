@@ -6,6 +6,11 @@ html
     = csrf_meta_tags
     = csp_meta_tag
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-    = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+
   body
-    = yield
+    .bg-light
+      = render partial: '/shared/header_nav'
+      = render partial: '/shared/notice'
+      = yield
+      = render partial: '/shared/footer'
