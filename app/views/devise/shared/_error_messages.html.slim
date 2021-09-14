@@ -1,5 +1,4 @@
-- if resource.errors.any?
-  .error-alert
-    ul
-      - resource.errors.full_messages.each do |message|
-        li.error-message= message
+.error-alert
+  ul
+    - resource.errors.full_messages.each do |message|
+      li.error-message= message

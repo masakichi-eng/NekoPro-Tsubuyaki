@@ -1,32 +1,23 @@
-= stylesheet_link_tag "users", media: "all"
+= stylesheet_link_tag "signin", media: "all"
 
-= form_with model:@user, url: user_registration_path, class: 'user_form', local: true do |f|
-  .login-wrap
-    .login-html
-      .page-title
-        h4
-          | サインアップ
-      .login-form
-        = render "devise/shared/error_messages", resource: @user
-        .sign-in-htm
-          .form-group
-            = f.label :nickname
-            br
-            = f.text_field :nickname, class:"input-default", autofocus: true, autocomplete: "nickname"
-          .form-group
-            = f.label :email, class: 'title'
-            br
-            = f.email_field :email, class:"input-default", autofocus: true
-          .form-group
-            = f.label :password, class: 'title'
-            br
-            = f.password_field :password, class:"input-default"
-          .form-group
-            = f.label :password_confirmation
-            br
-            = f.password_field :password_confirmation, class:"input-default", autocomplete: "new-password"
+body.container-field.content.text-center.overflow-auto
+  main.form-signin
+    = form_with model:@user, url: user_registration_path, class: 'user_form', local: true do |f|
+      h1.h3.fw-normal
+        | サインアップ
 
-          .actions
-            = f.submit "Sign up", class:"login-btn"
-
-= render "devise/shared/links"
+      = render "devise/shared/error_messages", model: f.object
+      = f.label :nickname, class: 'visually-hidden'
+      br
+      = f.text_field :nickname, class:"form-control", autofocus: true, autocomplete: "nickname"
+      = f.label :email, class: 'visually-hidden'
+      br
+      = f.email_field :email, class:"form-control", id:"inputEmail", placeholder:"PC/携帯どちらでも可", autofocus: true
+      = f.label :password, class: 'visually-hidden'
+      br
+      = f.password_field :password, class:"form-control", id:"inputPassword", placeholder:""
+      = f.label :password_confirmation, class: 'visually-hidden'
+      br
+      = f.password_field :password_confirmation, class:"form-control", id:"inputPassword", autocomplete: "new-password"
+ 
+      = f.submit "Log In", class:"w-100 btn btn-lg btn-primary"

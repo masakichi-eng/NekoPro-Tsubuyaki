@@ -1,28 +1,20 @@
-= stylesheet_link_tag "users", media: "all"
+= stylesheet_link_tag "signin", media: "all"
 
-= form_with model:@user, url: user_session_path, class: 'user_form', local: true do |f|
-  .login-wrap
-    .login-html
-      .page-title
-        h4
-          | ログイン
-      .login-form
-        = render "devise/shared/error_messages", model: f.object
-        .sign-in-htm
-          .form-group
-            = f.label :email, class: 'title'
-            br
-            = f.email_field :email, class:"input-default", id:"email", placeholder:"PC/携帯どちらでも可", autofocus: true
-          .form-group
-            = f.label :password, class: 'title'
-            br
-            = f.password_field :password, class:"input-default", id:"password", placeholder:""
+body.text-center
+  main.form-signin.container-field.login-content.overflow-auto
+    = form_with model:@user, url: user_session_path, local: true do |f|
+      h1.h3.fw-normal
+        | ログイン
 
-          - if devise_mapping.rememberable?
-            .remember-check
-              = f.check_box :remember_me
-              = f.label :remember_me
-          .actions
-            = f.submit "Log In", class:"login-btn"
-
-= render "devise/shared/links"
+      = render "devise/shared/error_messages", model: f.object
+      = f.label :email, class: 'visually-hidden'
+      = f.email_field :email, class:"form-control", id:"inputEmail", placeholder:"PC/携帯どちらでも可", autofocus: true
+      = f.label :password, class: 'visually-hidden'
+      = f.password_field :password, class:"form-control", id:"inputPassword", placeholder:""
+    
+      - if devise_mapping.rememberable?
+      .checkbox.mb-3
+        = f.check_box :remember_me
+        = f.label :remember_me
+ 
+        = f.submit "Log In", class:"w-100 btn btn-lg btn-primary"
