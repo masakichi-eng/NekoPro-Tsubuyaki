@@ -1,0 +1,7 @@
+- if User.find(1).likes.find_by(post_id: post.id)
+  = link_to users_post_likes_path(post.id), method: :delete, remote: true
+    i.fas.fa-heart.text-danger.ml-3
+- else
+  = link_to users_post_likes_path(post.id), method: :post, remote: true
+    i.fa.fa-heart.text-secondary.ml-3
+= post.likes.count

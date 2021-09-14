@@ -66,10 +66,12 @@ gem 'image_processing', '~> 1.2'
 
 gem 'devise'
 
-gem 'bootstrap', '~> 4.3.1'
-gem 'jquery-rails'
-
 gem 'pry-rails'
+
+gem 'discard', '~> 1.2'
+
+gem 'kaminari'
+gem 'kaminari-bootstrap', '~> 3.0.1'
 
 # devise作成時に行うこと userテーブルが先にあるため、いくつか作業を願いします（本来こんなことはしないのですが、すみません）
 # 1. docker-compose run --rm web rails db:migrate VERSION=0

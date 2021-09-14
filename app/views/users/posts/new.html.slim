@@ -1,0 +1,13 @@
+= stylesheet_link_tag "post", media: "all" 
+
+.content.bg-light
+  .h-100.w-100.m-0.d-flex.text-center.align-items-center.justify-content-center
+    .form-group.col-4.bg-white.p-4.border.rounded
+      h2.mt-3 投稿
+
+      .user 
+        span.user-name
+          / deviseと合流時にログインしているユーザー名current_user.nameに変更
+          i.far.fa-user-circle
+          |&nbsp;まさきち
+        = render partial: 'form', locals: { post: @post, path: users_posts_path }
