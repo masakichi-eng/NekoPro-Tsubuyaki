@@ -10,9 +10,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    devise_parameter_santizer.permit(:sign_up, keys: [:nickname])
+    super
+  end
 
   # GET /resource/edit
   # def edit
