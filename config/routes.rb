@@ -4,10 +4,6 @@ Rails.application.routes.draw do
     passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
-  devise_scope :user do
-    get 'profiles', to: 'users/registrations#new_profile'
-    post 'profiles', to: 'users/registrations#create_profile'
-  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   root to:  'general#index' 
