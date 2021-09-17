@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   namespace :users do
     resources :posts do
       resource :likes, only: %i(create destroy)
+      resources :comments, only: %i(create destroy)
     end
   end
   # indexは記述せず、general#indexに実装してください

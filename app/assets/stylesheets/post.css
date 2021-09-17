@@ -50,3 +50,11 @@
 .post-general{
   height: calc(100vh - 248px);
 }
+
+.comment-area{
+  height: 470px;
+}
+
+.comment-area-show{
+  height: 200px;
+}
