@@ -1,7 +1,7 @@
 = stylesheet_link_tag "signin", media: "all"
 
-body.container-field.content.text-center.overflow-auto
-  main.form-signin
+body.text-center
+  main.form-signin.container-field.login-content.overflow-auto
     = form_with model:@user, url: user_registration_path, class: 'user_form', local: true do |f|
       h1.h3.fw-normal
         | サインアップ
