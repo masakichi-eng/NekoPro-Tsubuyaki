@@ -16,6 +16,8 @@ class User < ApplicationRecord
 
   validates :nickname, presence: true
 
+  has_many :comments, dependent: :destroy
+
   def posts_discard
     posts.discard_all
   end
