@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe Post, type: :model do
   describe '#create' do
     before do
-      @post = FactoryBot.build(:post)
+      @user = FactoryBot.create(:user)
+      @post = FactoryBot.build(:post, user: @user)
     end
 
     context '投稿成功する場合' do
@@ -34,6 +35,12 @@ RSpec.describe Post, type: :model do
         @post.photo = nil
         @post.valid?
         expect(@post.errors.full_messages).to include("Photo can't be blank")
+      end
+
+      it 'userが空だと投稿できない' do
+        @post.user = nil
+        @post.valid?
+        expect(@post.errors.full_messages).to include("User must exist")
       end
     end
 

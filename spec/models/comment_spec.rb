@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
   describe '#create' do
-    let(:user) { User.create(name: 'test') }
-    let(:post) { FactoryBot.create(:post) }
+    let(:user) { FactoryBot.create(:user) }
+    let(:post) { FactoryBot.create(:post, user: user) }
     let(:comment) { FactoryBot.build(:comment, user: user, post: post) }
 
     context '成功する場合' do
