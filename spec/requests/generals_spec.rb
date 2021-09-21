@@ -2,9 +2,8 @@ require 'rails_helper'
 
 RSpec.describe GeneralController, type: :request do
   before do
-    User.create(id: 1, name: 'test')
-    @post = FactoryBot.create(:post, user_id: 1)
-
+    @user = FactoryBot.create(:user)
+    @post = FactoryBot.create(:post, user: @user)
   end
 
   describe 'GET #index' do

@@ -1,12 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe "Comments", type: :request do
-  let(:user) { User.create(id: 1, name: 'test') }
+  let(:user) { FactoryBot.create(:user) }
   let(:created_post) { FactoryBot.create(:post, user: user) }
   let(:build_comment) { FactoryBot.build(:comment, post: created_post) }
   let(:created_comment) { FactoryBot.create(:comment, user: user, post: created_post)}
   let(:path_build_comment) { users_post_comments_path(build_comment.post_id) }
   let!(:path_created_comment) { users_post_comment_path(created_comment.post_id, created_comment) }
+
+  before do
+    sign_in user
+  end
 
   describe "POST #create" do
     it 'リクエストが成功すること' do

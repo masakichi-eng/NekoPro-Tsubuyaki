@@ -1,13 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe "Likes", type: :request do
-  let(:user) { User.create(id: 1, name: 'test') }
+  let(:user) { FactoryBot.create(:user) }
   let(:new_post) { FactoryBot.create(:post, user: user) }
   let(:new_post2) { FactoryBot.create(:post, user: user) }
   let(:like) { FactoryBot.build(:like, user: user, post: new_post) }
   let!(:like2) { FactoryBot.create(:like, user: user, post: new_post2)}
   let(:post_likes) { users_post_likes_path(like.post_id) }
   let(:post_likes2) { users_post_likes_path(like2.post_id) }
+
+  before do
+    sign_in user
+  end
 
   describe "POST #create" do
     it 'リクエストが成功すること' do
