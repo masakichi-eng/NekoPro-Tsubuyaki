@@ -1,7 +1,11 @@
 class Users::PostsController < UserController
   before_action :set_post, only: %i(show edit destroy)
+  before_action :authenticate_user!, only: %i(new create edit update destroy)
+  before_action :move_root, only: %i(edit destroy)
 
-  def index; end
+  def index
+    @posts = Post.where(user: current_user).order(created_at: :desc)
+  end
 
   def new
     @post = Post.new
@@ -42,11 +46,14 @@ class Users::PostsController < UserController
   private
 
   def post_params
-    # 投稿機能のみでuser_idは1固定、ユーザー管理が入ったらcurrent_user.idに変更
-    params.require(:post).permit(:description, :photo).merge(user_id: 1)
+    params.require(:post).permit(:description, :photo).merge(user_id: current_user.id)
   end
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def move_root
+    redirect_to root_path, notice: '投稿したユーザーではありません' if @post.user != current_user
   end
 end

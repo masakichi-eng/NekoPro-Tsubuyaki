@@ -9,11 +9,12 @@
             = image_tag @post.photo, class: "image"
           .col.text-left.text-content.d-flex.flex-column
             span.user-name
-              / deviseと合流時にログインしているユーザー名current_user.nameに変更
               i.far.fa-user-circle
-              |&nbsp;りょう
-              = link_to "編集", edit_users_post_path(@post), class: "btn btn-warning ml-3"
-              = link_to "削除", users_post_path(@post), method: :delete, class: "btn btn-danger ml-3"
+              |&nbsp;
+              = @post.user.nickname
+              - if @post.user == current_user
+                = link_to "編集", edit_users_post_path(@post), class: "btn btn-warning ml-3"
+                = link_to "削除", users_post_path(@post), method: :delete, class: "btn btn-danger ml-3"
               
             p= @post.description
 
@@ -31,11 +32,11 @@
                   i.far.fa-user-circle
                   |&nbsp;
                   b 
-                    = comment.user.name
+                    = comment.user.nickname
                   |&nbsp;
                   = comment.comment
 
-                  - if comment.user.id == 1
+                  - if user_signed_in? && comment.user == current_user
                     = link_to "削除", users_post_comment_path(@post.id, comment.id), method: :delete, remote: true, class: "btn btn-danger btn-sm ml-2"
 
             = form_with url: users_post_comments_path(@post), local: true do |f|
