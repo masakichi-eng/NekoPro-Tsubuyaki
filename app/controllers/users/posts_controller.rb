@@ -1,10 +1,9 @@
 class Users::PostsController < UserController
   before_action :set_post, only: %i(show edit destroy)
-  before_action :authenticate_user!, only: %i(new create edit update destroy)
   before_action :move_root, only: %i(edit destroy)
 
   def index
-    @posts = Post.where(user: current_user).order(created_at: :desc)
+    @posts = current_user.posts.order(created_at: :desc)
   end
 
   def new
@@ -54,6 +53,10 @@ class Users::PostsController < UserController
   end
 
   def move_root
-    redirect_to root_path, notice: '投稿したユーザーではありません' if @post.user != current_user
+    begin
+      raise "投稿したユーザではありません"
+    rescue => raise_error
+    end
+    redirect_to root_path, notice: raise_error if @post.user != current_user
   end
 end
