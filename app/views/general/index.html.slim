@@ -6,49 +6,59 @@
     - @posts.each do |post|
       .col-md-5
         .card.mb-2.mt-4.post-general
-          = link_to users_post_path(post), class: "text-muted" do
-            .row
-              .col-7.text-left.ml-3.my-2
+
+          / 内容と投稿者名
+          .row
+            .col-7.text-left.ml-3.my-2
+              = link_to users_post_path(post), class: "text-muted" do
                 = post.description
-              .col.text-right.mr-3.my-2
-                i.far.fa-user-circle
-                |&nbsp;
-                b= post.user.name
+
+            .col.text-right.mr-3.my-2
+              i.far.fa-user-circle
+              |&nbsp;
+              b= post.user.nickname
+
+          / 画像
+          = link_to users_post_path(post), class: "text-muted" do
             = image_tag post.photo, class: "img-fluid img-height-index" 
             
-            .row
-              .col.ml-3.my-2
-                .row
-                  .likes id = "like_#{post.id}"
-                    = render 'users/likes/like', post: post
-                  .comment
-                    i.fas.fa-comment.mx-3
-
-              .col.mr-3.my-2
-                .date.text-right
-                  = post.created_at.strftime("%Y-%m-%d %H:%M")
+          .row
+            / いいねとコメント
+            .col.ml-3.my-2
+              .row
+                .likes id = "like_#{post.id}"
+                  = render 'users/likes/like', post: post
+                .comment
+                  i.fas.fa-comment.mx-3
             
-            .comment-area.text-left.ml-3.overflow-auto
-              - post.comments.each do |comment|
-                p
-                  i.far.fa-user-circle
-                  |&nbsp;
-                  b 
-                    = comment.user.name
-                  |&nbsp;
-                  = comment.comment
+            / 投稿日時
+            .col.mr-3.my-2
+              .date.text-right
+                = post.created_at.strftime("%Y-%m-%d %H:%M")
+          
+          / コメント
+          .comment-area.text-left.ml-3.overflow-auto
+            - post.comments.each do |comment|
+              p
+                i.far.fa-user-circle
+                |&nbsp;
+                b 
+                  = comment.user.nickname
+                |&nbsp;
+                = comment.comment
 
-                  - if comment.user.id == 1
-                    = link_to "削除", users_post_comment_path(post.id, comment.id), method: :delete, class: "btn btn-danger btn-sm ml-2"
+                - if user_signed_in? && comment.user == current_user
+                  = link_to "削除", users_post_comment_path(post.id, comment.id), method: :delete, class: "btn btn-danger btn-sm ml-2"
 
-            = form_with url: users_post_comments_path(post), local: true do |f|
-              .comment-form.form-group
-                .row
-                  .col-8.ml-4
-                    = f.text_field :comment, class: "form-control"
-                  .col
-                    = f.submit "コメント", class: "btn btn-primary"
+          / コメントフォーム
+          = form_with url: users_post_comments_path(post), local: true do |f|
+            .comment-form.form-group
+              .row
+                .col-8.ml-4
+                  = f.text_field :comment, class: "form-control"
+                .col
+                  = f.submit "コメント", class: "btn btn-primary"
 
-
+  / ページ表示
   .d-flex.justify-content-center.mt-2
     = paginate @posts

@@ -7,7 +7,7 @@
 
       .user 
         span.user-name
-          / deviseと合流時にログインしているユーザー名current_user.nameに変更
           i.far.fa-user-circle
-          |&nbsp;まさきち
+          |&nbsp;
+          = current_user.nickname
         = render partial: 'form', locals: { post: @post, path: users_posts_path }

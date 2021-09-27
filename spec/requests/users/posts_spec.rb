@@ -3,9 +3,10 @@ require 'rails_helper'
 RSpec.describe Users::PostsController, type: :request do
 
   before do
-    User.create(id: 1, name: 'test')
-    @post = FactoryBot.create(:post, user_id: 1)
+    @user = FactoryBot.create(:user)
+    @post = FactoryBot.create(:post, user: @user)
     @not_post_id = @post.id + 1
+    sign_in @user
   end
 
   describe 'GET #new' do
@@ -142,7 +143,7 @@ RSpec.describe Users::PostsController, type: :request do
     end
 
     it 'userを削除した際に、投稿が論理削除されること' do
-      User.find(1).destroy
+      User.find(@user.id).destroy
       expect(Post.with_discarded.find(@post.id).discarded_at.to_s).to eq(Time.current.to_s)
     end
   end

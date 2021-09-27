@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :post do
     description {'test'}
-    # user_id {1}
 
     association :user
     

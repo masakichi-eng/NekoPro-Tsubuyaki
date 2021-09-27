@@ -2,11 +2,11 @@ class Users::LikesController < UserController
   before_action :set_item
 
   def create
-    Like.create(user_id: 1, post_id: params[:post_id])
+    Like.create(user: current_user, post_id: params[:post_id])
   end
 
   def destroy
-    Like.find_by(user_id: 1, post_id: params[:post_id]).destroy
+    Like.find_by(user: current_user, post_id: params[:post_id]).destroy
   end
 
   private
