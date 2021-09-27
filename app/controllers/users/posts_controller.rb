@@ -54,9 +54,10 @@ class Users::PostsController < UserController
 
   def move_root
     begin
-      raise "投稿したユーザではありません"
-    rescue => raise_error
+      raise StandardError unless @post.user == current_user
+    rescue
+      puts "StandardError, user_id:#{current_user.id}が違うuser_id:#{@post.user.id}の投稿に編集・削除のアクセス"
+      redirect_to root_path, notice: "投稿したユーザではありません"
     end
-    redirect_to root_path, notice: raise_error if @post.user != current_user
   end
 end
